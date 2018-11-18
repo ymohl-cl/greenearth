@@ -1,8 +1,9 @@
 FROM golang:latest
 
-RUN mkdir /app
+RUN mkdir -pv /app/bin
 ADD . /app/
 WORKDIR /app
-RUN go build -o main .
+RUN go get "github.com/labstack/echo"
+RUN go build -o ./bin/main ./src/
 
-CMD ["/app/main"]
+CMD ["/app/bin/main"]

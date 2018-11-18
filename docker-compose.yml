@@ -3,6 +3,8 @@ services:
 
   go:
     build: go
+    ports:
+    - "1323:1323"
     links:
     - postgres
     volumes:
