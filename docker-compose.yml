@@ -1,0 +1,24 @@
+version: "2"
+services:
+
+  api:
+    build: api
+    ports:
+    - "1323:1323"
+    links:
+    - postgres
+    volumes:
+    - ./api/log:/var/log
+    - ./api/src:/app/src
+
+
+  postgres:
+    build: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/container_pg/:/var/lib/container_pg/
+      - ./postgres/log:/var/log
+    environment:
+      - PGDATA=/var/lib/container_pg/data/
+      - POSTGRES_USER=postgres
