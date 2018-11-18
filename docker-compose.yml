@@ -1,31 +1,16 @@
 version: "2"
 services:
 
-  go:
-    build: go
+  api:
+    build: api
     ports:
     - "1323:1323"
     links:
     - postgres
     volumes:
-    - ./go/log:/var/log
-    - ./go/src:/app/src
+    - ./api/log:/var/log
+    - ./api/src:/app/src
 
-  #jardin:
-  #  build: jardin
-  #  command: python app.py
-  #  ports:
-  #  - "6379:6379"
-  #  - "8100:8100"
-  #  volumes:
-  #  - ./centra/log:/var/log
-  #  - /var/local/assets:/var/local/assets
-  #  - ./centra/src:/home/backtoshops/centra_src
-  #  links:
-  #  - postgres
-  #  environment:
-  #  - DATADOG_HOST=datadog # used by the web app to initialize the Datadog library
-  #  - PYTHONPATH=$PYTHONPATH:/home/backtoshops/centra_src
 
   postgres:
     build: postgres
